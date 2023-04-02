@@ -1,8 +1,10 @@
+'''This file contains the model for the request body'''
+
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel #pylint: disable=no-name-in-module
 
 class Unit(BaseModel):
-    '''Allows the request body to be parsed into a python object'''
+    '''A model of a unit datacard'''
     unit: str
     power: int
     description: list
