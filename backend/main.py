@@ -46,7 +46,7 @@ async def post_unit(unit:Unit):
     raise HTTPException(400, "Bad Request")
 
 @app.put("/api/unit/{unit}", response_model=Unit)
-async def put_unit(unit:str, data:str):
+async def put_unit(unit:str, data:int):
     response = await update_unit(unit, data)
     if response:
         return response
