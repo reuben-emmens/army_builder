@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from model import Unit
-from database import (
+from .model import Unit
+from .database import (
     fetch_one_unit,
     fetch_all_units,
     create_unit,

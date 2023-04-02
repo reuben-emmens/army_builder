@@ -1,4 +1,4 @@
-from model import Unit
+from .model import Unit
 from dotenv import load_dotenv
 import os
 import motor.motor_asyncio
