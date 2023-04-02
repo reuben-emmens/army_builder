@@ -12,7 +12,7 @@ from .database import (
 # App object
 app = FastAPI()
 
-origins = ['https://localhost:3000']
+origins = ['*']
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,7 +32,7 @@ async def get_unit():
     return response
 
 @app.get("/api/unit/{unit}", response_model=Unit)
-async def get_unit_by_unit_name(unit:str):
+async def get_unit_by_name(unit:str):
     response = await fetch_one_unit(unit)
     if response:
         return response
