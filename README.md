@@ -32,3 +32,5 @@ curl -X 'GET' \
 ---
 <br>
 @EmmensReuben
+
+![Visualization of the codebase](./diagram.svg)
