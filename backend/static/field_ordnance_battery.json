@@ -1,0 +1,87 @@
+{
+    "unit": "Field Ordnance Battery",
+    "power": 6,
+    "description": [
+      "Amongst the largest man-potable weapons fielded byt he Astra Militarum are thpse crewed by Ordnance Teams. ",
+      "From bombast field guns that fire heavy shells indirectly, to the multiple warheads of the malleus rocket launcher ",
+      "or the searing energy lance unleashed by heavy lascannons, such batteries are powerful assets."
+    ],
+    "model": {
+      "01": {
+        "attributes": {
+          "No.": "2",
+          "Name": "Ordnance Team",
+          "M": "6\"",
+          "WS": "4+",
+          "BS": "4+",
+          "S": "3",
+          "T": "4",
+          "W": "6",
+          "A": "3",
+          "Ld": "6",
+          "Sv": "4+"
+        }
+      }
+    },
+    "equipment": {
+      "equipment_1": "Every model is equipped with: malleus rocket launcher; 2 lasguns; frag grenades."
+    },
+    "weapons": {
+      "01": {
+        "name": "Bombast field gun",
+        "range": "48\"",
+        "type": "Heavy D6",
+        "s": "7",
+        "ap": "-2",
+        "d": "2",
+        "abilities": "Blast. This weapon can target units that are not visible to the bearer"
+      },
+      "03": {
+        "name": "Heavy lascannon",
+        "range": "48\"",
+        "type": "Heavy 2",
+        "s": "10",
+        "ap": "-4",
+        "d": "D3+3",
+        "abilities": null
+      },
+      "02": {
+        "name": "Lasgun",
+        "range": "24\"",
+        "type": "Rapid Fire 1",
+        "s": "3",
+        "ap": "0",
+        "d": "1",
+        "abilities": null
+      },
+      "05": {
+        "name": "Malleus rocket launcher",
+        "range": "48\"",
+        "type": "Heavy D6+6",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": "Blast"
+      }
+    },
+    "other_wargear": null,
+    "wargear_options": {
+      "01": "Any number of models can each have their malleus rocket launcher replaced with one of the following: 1 bombast field gun; 1 heavy lascannon"
+    },
+    "abilities": {
+      "01": "Regimental Tactics [pg 75]"
+    },
+    "command_authority": null,
+    "keywords": {
+      "faction_keywords": {
+        "01": "IMPERIUM",
+        "02": "ASTRA MILITARUM"
+      },
+      "keywords": {
+        "01": "ARTILLERY",
+        "02": "PLATOON",
+        "03": "REGIMENTAL",
+        "04": "FIELD ORDNANCE BATTERY"
+      }
+    }
+}
