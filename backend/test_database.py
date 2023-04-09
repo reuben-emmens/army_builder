@@ -1,48 +1,40 @@
+# pylint: disable=redefined-outer-name
 '''Test the database functions are functioning correctly with expected outputs'''
 import os
-import json
+import json #pylint: disable=unused-import
 import motor.motor_asyncio
 import pytest
 from dotenv import load_dotenv
 
-# This is the same as using the @pytest.mark.anyio on all test functions in the module
-pytestmark = pytest.mark.anyio
+pytestmark = pytest.mark.asyncio
 
 @pytest.fixture
-def unit():
-    '''This function returns a sample unit to test the database functions'''
-    file_path = 'static/field_ordnance_battery.json'
-    with open(file_path, 'r', encoding='UTF-8') as f: #pylint: disable=invalid-name
-        read_file = f.read()
-        unit = json.loads(read_file)
-        return unit
+async def collection_fixture():
+    '''This function establishes a connection to the MongoDB database via the Motor driver.'''
+    load_dotenv()
+    cnxn_string = os.getenv('CNXN_STRING')
+    client = motor.motor_asyncio.AsyncIOMotorClient(cnxn_string)
+    database = client.UnitsList
+    collection_marker = database.Units
+    return collection_marker
 
-
-# @pytest.fixture
-# def collection():
-#     '''This function establishes a connection to the MongoDB database via the Motor driver.'''
-#     load_dotenv()
-#     cnxn_string = os.getenv('CNXN_STRING')
-#     client = motor.motor_asyncio.AsyncIOMotorClient(cnxn_string)
-#     database = client.UnitsList
-#     collection_marker = database.Units
-#     return collection_marker
-
-async def test_can_connect_to_db(unit):
-    '''Tests if a connection can be made to the Units collection'''
+@pytest.fixture
+async def document_fixture():
+    '''This function establishes a connection to the MongoDB database via the Motor driver.'''
     load_dotenv()
     cnxn_string = os.getenv('CNXN_STRING')
     client = motor.motor_asyncio.AsyncIOMotorClient(cnxn_string)
     database = client.UnitsList
     collection = database.Units
-    document = await collection.find_one({"unit": "Field Ordnance Battery"})
-    assert document[unit] == "Field Ordnance Battery"
+    doc = await collection.find_one({"unit": "Field Ordnance Battery"})
+    return doc
 
+async def test_document(document_fixture):
+    '''Tests if the document fixture is working correctly'''
+    document = await document_fixture
+    assert document['unit'] == 'Field Ordnance Battery'
 
-# load_dotenv()
-# cnxn_string = os.getenv('CNXN_STRING')
-# client = motor.motor_asyncio.AsyncIOMotorClient(cnxn_string)
-# database = client.UnitsList
-# collection = database.Units
-# document = await collection.find_one({"unit": "Field Ordnance Battery"})
-# print(document)
+async def test_collection(collection_fixture):
+    '''Tests if the collection fixture is working correctly'''
+    collection = await collection_fixture
+    assert collection.name == 'Units'
