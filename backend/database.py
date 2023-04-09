@@ -14,6 +14,16 @@ client = motor.motor_asyncio.AsyncIOMotorClient(cnxn_string)
 database = client.UnitsList
 collection = database.Units
 
+async def create_unit(unit):
+    '''This function creates a new unit in the database'''
+    document = unit
+    result = await collection.find_one({"unit": document["unit"]})
+    if result is None:
+        await collection.insert_one(document)
+        return document
+    else:
+        raise ValueError("Unit already exists")
+
 async def fetch_one_unit(unit):
     '''This function fetches a single unit from the database'''
     document = await collection.find_one({"unit": unit})
@@ -27,23 +37,13 @@ async def fetch_all_units():
         units.append(Unit(**document))
     return units
 
-async def create_unit(unit):
-    '''This function creates a new unit in the database'''
-    document = unit
-    result = await collection.find_one({"unit": document["unit"]})
-    if result is None:
-        await collection.insert_one(document)
-        return document
-    else:
-        raise ValueError("Unit already exists")
-
 async def update_unit(unit, data):
     '''This function updates a unit in the database'''
     await collection.update_one({"unit": unit}, {"$set": {"power": data}})
     document = await collection.find_one({"unit": unit})
     return document
 
-async def remove_unit(unit):
+async def delete_unit(unit):
     '''This function removes a unit from the database'''
     await collection.delete_one({"unit": unit})
     return True
