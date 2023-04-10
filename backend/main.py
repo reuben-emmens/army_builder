@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import (create_unit, fetch_all_units, fetch_one_unit,
-                       remove_unit, update_unit)
+                       delete_unit, update_unit)
 from .model import Unit
 
 # App object
