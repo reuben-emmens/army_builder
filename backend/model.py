@@ -16,3 +16,17 @@ class Unit(BaseModel):
     abilities: dict
     command_authority: Optional[dict]
     keywords: dict
+
+class UpdatedUnit(BaseModel):
+    '''A model of a unit datacard'''
+    unit: Optional[str] = None
+    power: Optional[int] = None
+    description: Optional[list] = None
+    model: Optional[dict] = None
+    equipment: Optional[dict] = None
+    weapons: Optional[dict] = None
+    other_wargear: Optional[dict] = None
+    wargear_options: Optional[dict] = None
+    abilities: Optional[dict] = None
+    command_authority: Optional[dict] = None
+    keywords: Optional[dict] = None
