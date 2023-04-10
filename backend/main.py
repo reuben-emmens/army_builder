@@ -57,9 +57,9 @@ async def put_unit(unit:str, data:int):
     raise HTTPException(404, f"There is no unit with the name: {unit}")
 
 @app.delete("/api/unit/{unit}")
-async def delete_unit(unit:str):
+async def delete_unit_request(unit:str):
     '''This function deletes a unit from the database'''''
-    response = await remove_unit(unit)
+    response = await delete_unit(unit)
     if response:
         return "Successfully deleted unit"
     raise HTTPException(404, f"There is no unit with the name: {unit}")
